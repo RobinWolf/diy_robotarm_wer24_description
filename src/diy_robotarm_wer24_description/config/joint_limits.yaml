@@ -5,7 +5,7 @@
 #       self collisons doesn't need to be taken into account by specifying these paremeters
 
 joint_limits:
-  axis_1:
+  base-link1:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
     has_effort_limits: false
@@ -15,7 +15,7 @@ joint_limits:
     max_velocity: !degrees  60.0
     min_position: !degrees -180.0
 
-  axis_2:
+  link1-link2:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
     has_effort_limits: false
@@ -25,7 +25,7 @@ joint_limits:
     max_velocity: !degrees  60.0
     min_position: !degrees -180.0
 
-  axis_3:
+  link2-link3:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
     has_effort_limits: false
@@ -35,7 +35,7 @@ joint_limits:
     max_velocity: !degrees  60.0
     min_position: !degrees -180.0
 
-  axis_4:
+  link3-link4:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
     has_effort_limits: false
@@ -45,7 +45,7 @@ joint_limits:
     max_velocity: !degrees  60.0
     min_position: !degrees -180.0
 
-  axis_5:
+  link4-link5:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
     has_effort_limits: false
@@ -55,7 +55,7 @@ joint_limits:
     max_velocity: !degrees  60.0
     min_position: !degrees -180.0
 
-  axis_6:
+  link5-link6:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
     has_effort_limits: false

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+
+<!-- this file includes helper macros to unpack configs frim .yaml files and pass them into properties, callable in the outer macros-->
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+
+  <xacro:macro name="read_model_data" params="joint_limits_parameters_file kinematics_parameters_file  force_abs_paths">
+
+    <xacro:property name="force_abs_paths" value="${force_abs_paths}" scope="parent"/>
+
+    <!-- Read .yaml files from disk, load content into properties -->
+    <xacro:property name="config_joint_limit_parameters" value="${xacro.load_yaml(joint_limits_parameters_file)}"/>
+    <xacro:property name="config_kinematics_parameters" value="${xacro.load_yaml(kinematics_parameters_file)}"/>
+    
+    <!-- Extract subsections from yaml dictionaries -->
+    <xacro:property name="sec_limits" value="${config_joint_limit_parameters['joint_limits']}"/>
+    <xacro:property name="sec_kinematics" value="${config_kinematics_parameters['kinematics']}" />
+
+    <!-- JOINTS LIMIT PARAMETERS, called in the diy_robotarm_macro.xacro -->
+    <xacro:property name="base-link1_pan_lower_limit" value="${sec_limits['base-link1_pan_joint']['min_position']}" scope="parent"/>
+    <xacro:property name="base-link1_pan_upper_limit" value="${sec_limits['base-link1_pan_joint']['max_position']}" scope="parent"/>
+    <xacro:property name="base-link1_pan_velocity_limit" value="${sec_limits['base-link1_pan_joint']['max_velocity']}" scope="parent"/>
+    <xacro:property name="base-link1_pan_effort_limit" value="${sec_limits['base-link1_pan_joint']['max_effort']}" scope="parent"/>
+    <xacro:property name="base-link1_lift_lower_limit" value="${sec_limits['base-link1_lift_joint']['min_position']}" scope="parent"/>
+    <xacro:property name="base-link1_lift_upper_limit" value="${sec_limits['base-link1_lift_joint']['max_position']}" scope="parent"/>
+    <xacro:property name="base-link1_lift_velocity_limit" value="${sec_limits['base-link1_lift_joint']['max_velocity']}" scope="parent"/>
+    <xacro:property name="base-link1_lift_effort_limit" value="${sec_limits['base-link1_lift_joint']['max_effort']}" scope="parent"/>
+    <xacro:property name="elbow_joint_lower_limit" value="${sec_limits['elbow_joint']['min_position']}" scope="parent"/>
+    <xacro:property name="elbow_joint_upper_limit" value="${sec_limits['elbow_joint']['max_position']}" scope="parent"/>
+    <xacro:property name="elbow_joint_velocity_limit" value="${sec_limits['elbow_joint']['max_velocity']}" scope="parent"/>
+    <xacro:property name="elbow_joint_effort_limit" value="${sec_limits['elbow_joint']['max_effort']}" scope="parent"/>
+    <xacro:property name="link3-link4_lower_limit" value="${sec_limits['link3-link4_joint']['min_position']}" scope="parent"/>
+    <xacro:property name="link3-link4_upper_limit" value="${sec_limits['link3-link4_joint']['max_position']}" scope="parent"/>
+    <xacro:property name="link3-link4_velocity_limit" value="${sec_limits['link3-link4_joint']['max_velocity']}" scope="parent"/>
+    <xacro:property name="link3-link4_effort_limit" value="${sec_limits['link3-link4_joint']['max_effort']}" scope="parent"/>
+    <xacro:property name="link4-link5_lower_limit" value="${sec_limits['link4-link5_joint']['min_position']}" scope="parent"/>
+    <xacro:property name="link4-link5_upper_limit" value="${sec_limits['link4-link5_joint']['max_position']}" scope="parent"/>
+    <xacro:property name="link4-link5_velocity_limit" value="${sec_limits['link4-link5_joint']['max_velocity']}" scope="parent"/>
+    <xacro:property name="link4-link5_effort_limit" value="${sec_limits['link4-link5_joint']['max_effort']}" scope="parent"/>
+    <xacro:property name="link5-link6_lower_limit" value="${sec_limits['link5-link6_joint']['min_position']}" scope="parent"/>
+    <xacro:property name="link5-link6_upper_limit" value="${sec_limits['link5-link6_joint']['max_position']}" scope="parent"/>
+    <xacro:property name="link5-link6_velocity_limit" value="${sec_limits['link5-link6_joint']['max_velocity']}" scope="parent"/>
+    <xacro:property name="link5-link6_effort_limit" value="${sec_limits['link5-link6_joint']['max_effort']}" scope="parent"/>
+
+
+    <!-- kinematics -->
+    <xacro:property name="base-link1_x" value="${sec_kinematics['base-link1']['x']}" scope="parent"/>
+    <xacro:property name="base-link1_y" value="${sec_kinematics['base-link1']['y']}" scope="parent"/>
+    <xacro:property name="base-link1_z" value="${sec_kinematics['base-link1']['z']}" scope="parent"/>
+    <xacro:property name="base-link1_roll" value="${sec_kinematics['base-link1']['roll']}" scope="parent"/>
+    <xacro:property name="base-link1_pitch" value="${sec_kinematics['base-link1']['pitch']}" scope="parent"/>
+    <xacro:property name="base-link1_yaw" value="${sec_kinematics['base-link1']['yaw']}" scope="parent"/>
+
+    <xacro:property name="link1-link2_x" value="${sec_kinematics['link1-link2']['x']}" scope="parent"/>
+    <xacro:property name="link1-link2_y" value="${sec_kinematics['link1-link2']['y']}" scope="parent"/>
+    <xacro:property name="link1-link2_z" value="${sec_kinematics['link1-link2']['z']}" scope="parent"/>
+    <xacro:property name="link1-link2_roll" value="${sec_kinematics['link1-link2']['roll']}" scope="parent"/>
+    <xacro:property name="link1-link2_pitch" value="${sec_kinematics['link1-link2']['pitch']}" scope="parent"/>
+    <xacro:property name="link1-link2_yaw" value="${sec_kinematics['link1-link2']['yaw']}" scope="parent"/>
+
+    <xacro:property name="link2-link3_x" value="${sec_kinematics['link2-link3']['x']}" scope="parent"/>
+    <xacro:property name="link2-link3_y" value="${sec_kinematics['link2-link3']['y']}" scope="parent"/>
+    <xacro:property name="link2-link3_z" value="${sec_kinematics['link2-link3']['z']}" scope="parent"/>
+    <xacro:property name="link2-link3_roll" value="${sec_kinematics['link2-link3']['roll']}" scope="parent"/>
+    <xacro:property name="link2-link3_pitch" value="${sec_kinematics['link2-link3']['pitch']}" scope="parent"/>
+    <xacro:property name="link2-link3_yaw" value="${sec_kinematics['link2-link3']['yaw']}" scope="parent"/>
+
+    <xacro:property name="link3-link4_x" value="${sec_kinematics['link3-link4']['x']}" scope="parent"/>
+    <xacro:property name="link3-link4_y" value="${sec_kinematics['link3-link4']['y']}" scope="parent"/>
+    <xacro:property name="link3-link4_z" value="${sec_kinematics['link3-link4']['z']}" scope="parent"/>
+    <xacro:property name="link3-link4_roll" value="${sec_kinematics['link3-link4']['roll']}" scope="parent"/>
+    <xacro:property name="link3-link4_pitch" value="${sec_kinematics['link3-link4']['pitch']}" scope="parent"/>
+    <xacro:property name="link3-link4_yaw" value="${sec_kinematics['link3-link4']['yaw']}" scope="parent"/>
+
+    <xacro:property name="link4-link5_x" value="${sec_kinematics['link4-link5']['x']}" scope="parent"/>
+    <xacro:property name="link4-link5_y" value="${sec_kinematics['link4-link5']['y']}" scope="parent"/>
+    <xacro:property name="link4-link5_z" value="${sec_kinematics['link4-link5']['z']}" scope="parent"/>
+    <xacro:property name="link4-link5_roll" value="${sec_kinematics['link4-link5']['roll']}" scope="parent"/>
+    <xacro:property name="link4-link5_pitch" value="${sec_kinematics['link4-link5']['pitch']}" scope="parent"/>
+    <xacro:property name="link4-link5_yaw" value="${sec_kinematics['link4-link5']['yaw']}" scope="parent"/>
+
+    <xacro:property name="link5-link6_x" value="${sec_kinematics['link5-link6']['x']}" scope="parent"/>
+    <xacro:property name="link5-link6_y" value="${sec_kinematics['link5-link6']['y']}" scope="parent"/>
+    <xacro:property name="link5-link6_z" value="${sec_kinematics['link5-link6']['z']}" scope="parent"/>
+    <xacro:property name="link5-link6_roll" value="${sec_kinematics['link5-link6']['roll']}" scope="parent"/>
+    <xacro:property name="link5-link6_pitch" value="${sec_kinematics['link5-link6']['pitch']}" scope="parent"/>
+    <xacro:property name="link5-link6_yaw" value="${sec_kinematics['link5-link6']['yaw']}" scope="parent"/>
+
+
+  </xacro:macro>
+</robot>

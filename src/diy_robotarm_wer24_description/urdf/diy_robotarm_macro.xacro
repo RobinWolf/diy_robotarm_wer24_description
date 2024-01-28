@@ -1,16 +1,117 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<!--include the config files with fixed parameters-->
+<!--#######################################################################################################################################-->
+<!--include the helpers with fixed parameters-->
+<!--#######################################################################################################################################-->
   <xacro:include filename="$(find diy_soft_gripper_description)/urdf/materials.urdf.xacro" />
+  <xacro:include filename="$(find ur_description)/urdf/common.xacro" />
 
 
+<!--#######################################################################################################################################-->
+<!--set some parameters with default values used by the macros (kinematics description, simulation and control)-->
+<!--#######################################################################################################################################-->
 
+<!--still to modify delete not necessary params *** only use fake hardware should be available???-->
+
+  <xacro:macro name="diy_robotarm" params="
+    name
+    tf_prefix
+    parent
+    *origin
+    joint_limits_parameters_file 
+    kinematics_parameters_file
+    generate_ros2_control_tag:=true
+    transmission_hw_interface:=hardware_interface/PositionJointInterface
+    safety_limits:=false
+    safety_pos_margin:=0.15
+    safety_k_position:=20
+    use_fake_hardware:=false
+    fake_sensor_commands:=false
+    sim_gazebo:=false
+    sim_ignition:=false
+    headless_mode:=false
+    initial_positions:=${dict(shouler=0.0,upper_arm=0.0,forearm=0.0,wrist_1_joint=0.0,wrist_2_joint=0.0,wrist_3_joint=0.0)}
+    use_tool_communication:=false
+    tool_voltage:=0
+    tool_parity:=0
+    tool_baud_rate:=115200
+    tool_stop_bits:=1
+    tool_rx_idle_chars:=1.5
+    tool_tx_idle_chars:=3.5
+    tool_device_name:=/tmp/ttyUR
+    tool_tcp_port:=54321
+    robot_ip:=0.0.0.0
+    script_filename:=to_be_filled_by_ur_robot_driver
+    output_recipe_filename:=to_be_filled_by_ur_robot_driver
+    input_recipe_filename:=to_be_filled_by_ur_robot_driver
+    reverse_port:=50001
+    script_sender_port:=50002
+    reverse_ip:=0.0.0.0
+    script_command_port:=50004
+    trajectory_port:=50003
+    non_blocking_read:=true
+    keep_alive_count:=2"
+    >
+
+<!--#######################################################################################################################################-->
+<!--load configuration data from config/xxx.yaml files with the read_model_macro specified in helpers.xacro-->  
+<!--#######################################################################################################################################-->
+    <xacro:read_model_data
+      joint_limits_parameters_file="${joint_limits_parameters_file}"
+      kinematics_parameters_file="${kinematics_parameters_file}"
+      force_abs_paths="${sim_gazebo or sim_ignition}"/>
+
+
+  <!--#######################################################################################################################################-->
+  <!--include ros2 control and create an instance if param generate_ros2_control_tag == true and pass necessary params-->
+  <!--#######################################################################################################################################-->
+
+  <!--still to modify delete not necessary params-->
+
+    <xacro:if value="${generate_ros2_control_tag}">
+        <!-- ros2 control include -->
+        <xacro:include filename="$(find ur_description)/urdf/diy_robotarm_ros2_control.xacro" />
+        <!-- ros2 control instance -->
+        <xacro:wer24_ros2_control
+          name="${name}"
+          use_fake_hardware="${use_fake_hardware}"
+          initial_positions="${initial_positions}"
+          fake_sensor_commands="${fake_sensor_commands}"
+          headless_mode="${headless_mode}"
+          sim_gazebo="${sim_gazebo}"
+          sim_ignition="${sim_ignition}"
+          script_filename="${script_filename}"
+          output_recipe_filename="${output_recipe_filename}"
+          input_recipe_filename="${input_recipe_filename}"
+          tf_prefix="${tf_prefix}"
+          hash_kinematics="${kinematics_hash}"
+          robot_ip="${robot_ip}"
+          use_tool_communication="${use_tool_communication}"
+          tool_voltage="${tool_voltage}"
+          tool_parity="${tool_parity}"
+          tool_baud_rate="${tool_baud_rate}"
+          tool_stop_bits="${tool_stop_bits}"
+          tool_rx_idle_chars="${tool_rx_idle_chars}"
+          tool_tx_idle_chars="${tool_tx_idle_chars}"
+          tool_device_name="${tool_device_name}"
+          tool_tcp_port="${tool_tcp_port}"
+          reverse_port="${reverse_port}"
+          script_sender_port="${script_sender_port}"
+          reverse_ip="${reverse_ip}"
+          script_command_port="${script_command_port}"
+          trajectory_port="${trajectory_port}"
+          non_blocking_read="${non_blocking_read}"
+          keep_alive_count="${keep_alive_count}"
+          />
+      </xacro:if>
+
+<!--#######################################################################################################################################-->
 <!--define the main kinematic chain with links and joints (using the config-files)-->
-  <xacro:macro name="robot_arm" params="tf_prefix parent *origin">
+<!--#######################################################################################################################################-->
 
     <!-- Achse fix Base to parent passed in the main_urdf.xacro-->
-    <joint name="${tf_prefix}gripper_to_parent" type="fixed">
+    <joint name="${tf_prefix}robotarm_to_parent" type="fixed">
         <parent link="${parent}"/>
         <child link="${tf_prefix}base_link"/>
     </joint>
@@ -34,12 +135,12 @@
     </link>
 
     <!-- Achse 1 (Base = World)-->
-    <joint name="${tf_prefix}axis_1" type="revolute">
+    <joint name="${tf_prefix}shoulder" type="revolute">
       <origin xyz="$(base-link1_x) $(base-link1_y) $(base-link2_z)" rpy="$(base-link1_roll) $(base-link1_pitch) $(base-link1_yaw)"/> 
       <parent link="base_link"/>
       <child link="link_1"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${axis_1_lower_limit}" upper="${axis_1_upper_limit}" velocity="${axis_1_velocity_limit}"/> 
+      <limit lower="${base-link1_lower_limit}" upper="${base-link1_upper_limit}" velocity="${base-link1_velocity_limit}"/> 
     </joint>
 
     <!-- Link1 = Shoulder -->
@@ -61,12 +162,12 @@
     </link>
 
     <!-- Achse 2 -->
-    <joint name="${tf_prefix}axis_2" type="revolute">
+    <joint name="${tf_prefix}upper_arm" type="revolute">
       <origin xyz="$(link1-link2_x) $(link1-link2_y) $(link1-link2_z)" rpy="$(link1-link2_roll) $(link1-link2_pitch) $(link1-link2_yaw)"/> 
       <parent link="link_1"/>
       <child link="link_2"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${axis_2_lower_limit}" upper="${axis_2_upper_limit}" velocity="${axis_2_velocity_limit}"/> 
+      <limit lower="${link1-link2_lower_limit}" upper="${link1-link2_upper_limit}" velocity="${link1-link2_velocity_limit}"/> 
     </joint>
 
     <!-- Link2 = Upper_Arm -->
@@ -88,16 +189,16 @@
     </link>
 
     <!-- Achse 3 -->
-    <joint name="${tf_prefix}axis_3" type="revolute">
+    <joint name="${tf_prefix}forearm" type="revolute">
       <origin xyz="$(link2-link3_x) $(link2-link3_y) $(link2-link3_z)" rpy="$(link2-link3_roll) $(link2-link3_pitch) $(link2-link3_yaw)"/> 
       <parent link="link_2"/>
       <child link="link_3"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${axis_3_lower_limit}" upper="${axis_3_upper_limit}" velocity="${axis_3_velocity_limit}"/> 
+      <limit lower="${link2-link3_lower_limit}" upper="${link2-link3_upper_limit}" velocity="${link2-link3_velocity_limit}"/> 
     </joint>
 
     <!-- Link3 = Forearm -->
-    <link name="l${tf_prefix}ink_3">
+    <link name="${tf_prefix}link_3">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -115,12 +216,12 @@
     </link>
 
     <!-- Achse 4 -->
-    <joint name="${tf_prefix}axis_4" type="revolute">
+    <joint name="${tf_prefix}wrist_1" type="revolute">
       <origin xyz="$(link3-link4_x) $(link3-link4_y) $(link3-link4_z)" rpy="$(link3-link4_roll) $(link3-link4_pitch) $(link3-link4_yaw)"/> 
       <parent link="link_3"/>
       <child link="link_4"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${axis_4_lower_limit}" upper="${axis_4_upper_limit}" velocity="${axis_4_velocity_limit}"/> 
+      <limit lower="${link3-link4_lower_limit}" upper="${link3-link4_upper_limit}" velocity="${link3-link4_velocity_limit}"/> 
     </joint>
 
     <!-- Link4 = Wrist 1 -->
@@ -142,12 +243,12 @@
     </link>
 
     <!-- Achse 5 -->
-    <joint name="${tf_prefix}axis_5" type="revolute">
+    <joint name="${tf_prefix}wrist_2" type="revolute">
       <origin xyz="$(link4-link5_x) $(link4-link5_y) $(link4-link5_z)" rpy="$(link4-link5_roll) $(link4-link5_pitch) $(link4-link5_yaw)"/> 
       <parent link="link_4"/>
       <child link="link_5"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${axis_5_lower_limit}" upper="${axis_5_upper_limit}" velocity="${axis_5_velocity_limit}"/> 
+      <limit lower="${link4-link5_lower_limit}" upper="${link4-link5_upper_limit}" velocity="${link4-link5_velocity_limit}"/> 
     </joint>
 
     <!-- Link5 = Wrist 2 -->
@@ -169,12 +270,12 @@
     </link>
 
     <!-- Achse 6 -->
-    <joint name="${tf_prefix}axis_6" type="revolute">
+    <joint name="${tf_prefix}wrist_3" type="revolute">
       <origin xyz="$(link5-link6_x) $(link5-link6_y) $(link5-link6_z)" rpy="$(link5-link6_roll) $(link5-link6_pitch) $(link5-link6_yaw)"/> 
       <parent link="link_5"/>
       <child link="link_6"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${axis_6_lower_limit}" upper="${axis_6_upper_limit}" velocity="${axis_6_velocity_limit}"/> 
+      <limit lower="${link5-link6_lower_limit}" upper="${link5-link6_upper_limit}" velocity="${link5-link6_velocity_limit}"/> 
     </joint>
 
     <!-- Link6 = Flange -->
