@@ -8,59 +8,69 @@ joint_limits:
   shoulder:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
-    has_effort_limits: false
+    has_effort_limits: true
     has_position_limits: true
     has_velocity_limits: true
     max_position: !degrees  180.0
     max_velocity: !degrees  60.0
     min_position: !degrees -180.0
+    max_effort: 15  #in Nm
 
   upper_arm:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
-    has_effort_limits: false
+    has_effort_limits: true
     has_position_limits: true
     has_velocity_limits: true
     max_position: !degrees  180.0
     max_velocity: !degrees  60.0
     min_position: !degrees -180.0
+    max_effort: 15
+
 
   forearm:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
-    has_effort_limits: false
+    has_effort_limits: true
     has_position_limits: true
     has_velocity_limits: true
     max_position: !degrees  180.0
     max_velocity: !degrees  60.0
     min_position: !degrees -180.0
+    max_effort: 15
+
 
   wrist_1:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
-    has_effort_limits: false
+    has_effort_limits: true
     has_position_limits: true
     has_velocity_limits: true
     max_position: !degrees  180.0
     max_velocity: !degrees  60.0
     min_position: !degrees -180.0
+    max_effort: 10
+
 
   wrist_2:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
-    has_effort_limits: false
+    has_effort_limits: true
     has_position_limits: true
     has_velocity_limits: true
     max_position: !degrees  180.0
     max_velocity: !degrees  60.0
     min_position: !degrees -180.0
+    max_effort: 10
 
   wrist_3:
     # acceleration limits are not publicly available
     has_acceleration_limits: false
-    has_effort_limits: false
+    has_effort_limits: true
     has_position_limits: true
     has_velocity_limits: true
     max_position: !degrees  180.0
     max_velocity: !degrees  60.0
     min_position: !degrees -180.0
+    max_effort: 10
+

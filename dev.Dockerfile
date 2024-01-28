@@ -18,9 +18,10 @@ RUN groupadd -g $GID $USER \
     && useradd -m -u $UID -g $GID -p "$(openssl passwd -1 $PASSWORD)" \
     --shell $(which bash) $USER -G sudo
 
-#install xacro package (additional necessarity when not using the ur-package from ros)
+#install xacro and joint state publisher gui package (additional necessarity when not using the ur-package from ros)
 USER root
 RUN apt-get update && apt-get install -y ros-humble-xacro
+RUN apt-get update && apt-get install -y ros-humble-joint-state-publisher-gui
 USER ${USER}
 
 # Setup workpace

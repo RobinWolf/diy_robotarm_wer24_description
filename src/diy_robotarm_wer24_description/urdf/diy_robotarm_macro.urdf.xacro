@@ -81,7 +81,7 @@
           non_blocking_read="${non_blocking_read}"
           keep_alive_count="${keep_alive_count}"
           />
-      </xacro:if>
+    </xacro:if>
 
 <!--#######################################################################################################################################-->
 <!--define the main kinematic chain with links and joints (using the config-files)-->
@@ -114,10 +114,10 @@
     <!-- Achse 1 (Base = World)-->
     <joint name="${tf_prefix}shoulder" type="revolute">
       <origin xyz="${shoulder_x} ${shoulder_y} ${shoulder_z}" rpy="${shoulder_roll} ${shoulder_pitch} ${shoulder_yaw}"/> 
-      <parent link="base_link"/>
-      <child link="link_1"/>
+      <parent link="${tf_prefix}base_link"/>
+      <child link="${tf_prefix}link_1"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${shoulder_lower_limit}" upper="${shoulder_upper_limit}" velocity="${shoulder_velocity_limit}"/> 
+      <limit lower="${shoulder_lower_limit}" upper="${shoulder_upper_limit}" velocity="${shoulder_velocity_limit}" effort="${shoulder_effort_limit}"/> 
     </joint>
 
     <!-- Link1 = Shoulder -->
@@ -141,10 +141,10 @@
     <!-- Achse 2 -->
     <joint name="${tf_prefix}upper_arm" type="revolute">
       <origin xyz="${upper_arm_x} ${upper_arm_y} ${upper_arm_z}" rpy="${upper_arm_roll} ${upper_arm_pitch} ${upper_arm_yaw}"/> 
-      <parent link="link_1"/>
-      <child link="link_2"/>
+      <parent link="${tf_prefix}link_1"/>
+      <child link="${tf_prefix}link_2"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${upper_arm_lower_limit}" upper="${upper_arm_upper_limit}" velocity="${upper_arm_velocity_limit}"/> 
+      <limit lower="${upper_arm_lower_limit}" upper="${upper_arm_upper_limit}" velocity="${upper_arm_velocity_limit}" effort="${upper_arm_effort_limit}"/> 
     </joint>
 
     <!-- Link2 = Upper_Arm -->
@@ -168,10 +168,10 @@
     <!-- Achse 3 -->
     <joint name="${tf_prefix}forearm" type="revolute">
       <origin xyz="${forearm_x} ${forearm_y} ${forearm_z}" rpy="${forearm_roll} ${forearm_pitch} ${forearm_yaw}"/> 
-      <parent link="link_2"/>
-      <child link="link_3"/>
+      <parent link="${tf_prefix}link_2"/>
+      <child link="${tf_prefix}link_3"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${forearm_lower_limit}" upper="${forearm_upper_limit}" velocity="${forearm_velocity_limit}"/> 
+      <limit lower="${forearm_lower_limit}" upper="${forearm_upper_limit}" velocity="${forearm_velocity_limit}" effort="${forearm_effort_limit}"/> 
     </joint>
 
     <!-- Link3 = Forearm -->
@@ -195,10 +195,10 @@
     <!-- Achse 4 -->
     <joint name="${tf_prefix}wrist_1" type="revolute">
       <origin xyz="${wrist_1_x} ${wrist_1_y} ${wrist_1_z}" rpy="${wrist_1_roll} ${wrist_1_pitch} ${wrist_1_yaw}"/> 
-      <parent link="link_3"/>
-      <child link="link_4"/>
+      <parent link="${tf_prefix}link_3"/>
+      <child link="${tf_prefix}link_4"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${wrist_1_lower_limit}" upper="${wrist_1_upper_limit}" velocity="${wrist_1_velocity_limit}"/> 
+      <limit lower="${wrist_1_lower_limit}" upper="${wrist_1_upper_limit}" velocity="${wrist_1_velocity_limit}" effort="${wrist_1_effort_limit}"/> 
     </joint>
 
     <!-- Link4 = Wrist 1 -->
@@ -222,10 +222,10 @@
     <!-- Achse 5 -->
     <joint name="${tf_prefix}wrist_2" type="revolute">
       <origin xyz="${wrist_2_x} ${wrist_2_y} ${wrist_2_z}" rpy="${wrist_2_roll} ${wrist_2_pitch} ${wrist_2_yaw}"/> 
-      <parent link="link_4"/>
-      <child link="link_5"/>
+      <parent link="${tf_prefix}link_4"/>
+      <child link="${tf_prefix}link_5"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${wrist_2_lower_limit}" upper="${wrist_2_upper_limit}" velocity="${wrist_2_velocity_limit}"/> 
+      <limit lower="${wrist_2_lower_limit}" upper="${wrist_2_upper_limit}" velocity="${wrist_2_velocity_limit}" effort="${wrist_2_effort_limit}"/> 
     </joint>
 
     <!-- Link5 = Wrist 2 -->
@@ -249,10 +249,10 @@
     <!-- Achse 6 -->
     <joint name="${tf_prefix}wrist_3" type="revolute">
       <origin xyz="${wrist_3_x} ${wrist_3_y} ${wrist_3_z}" rpy="${wrist_3_roll} ${wrist_3_pitch} ${wrist_3_yaw}"/> 
-      <parent link="link_5"/>
-      <child link="link_6"/>
+      <parent link="${tf_prefix}link_5"/>
+      <child link="${tf_prefix}link_6"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <limit lower="${wrist_3_lower_limit}" upper="${wrist_3_upper_limit}" velocity="${wrist_3_velocity_limit}"/> 
+      <limit lower="${wrist_3_lower_limit}" upper="${wrist_3_upper_limit}" velocity="${wrist_3_velocity_limit}" effort="${wrist_3_effort_limit}"/> 
     </joint>
 
     <!-- Link6 = Flange -->

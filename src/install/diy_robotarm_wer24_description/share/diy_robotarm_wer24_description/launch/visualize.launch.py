@@ -16,22 +16,35 @@ def generate_launch_description():
             default_value='""',
             description="Prefix for the links and joints in the robot cell",
         )
+    )        
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "use_fake_hardware",
+            default_value='"false"',
+            description="start the robot with fake(mock) hardware or real controller",
+        )
     )
 
+
     tf_prefix = LaunchConfiguration("tf_prefix")
+    use_fake_hardware = LaunchConfiguration("use_fake_hardware")
 
     robot_description_content = Command(
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([FindPackageShare(description_package), "urdf", "diy_robotarm_main.urdf.xacro"]),
+            PathJoinSubstitution([FindPackageShare(description_package), "urdf", "diy_robotarm_model.urdf.xacro"]),
             " ",
             "tf_prefix:=",
             tf_prefix,
+            " ",
+            "use_fake_hardware:=",
+            use_fake_hardware,
         ]
     )
 
-    robot_description = {"robot_description": ParameterValue(robot_description_content, value_type=str)}
+    #convert robot_description_content to string, thet it can be passed as yaml to the robot_state_publisher Node --> unsafe without !
+    robot_description = {"robot_description": ParameterValue(robot_description_content, value_type=str)} 
     
     #rviz_config_file = PathJoinSubstitution([FindPackageShare(description_package), "rviz", "rviz_config.rviz"]) # define path to rviz-config file
 
@@ -41,6 +54,12 @@ def generate_launch_description():
         output="both",
         parameters=[robot_description],
     )
+    #run joint_state_publisher node, because we don't need to bringup the robot model (without no transforms !) --> only for visualizing porposes     
+    joint_state_publisher_node = Node(
+        package="joint_state_publisher_gui",
+        executable="joint_state_publisher_gui",
+    )
+
     rviz_node = Node(
         package="rviz2",
         executable="rviz2",
@@ -51,6 +70,7 @@ def generate_launch_description():
 
     nodes_to_start = [
         robot_state_publisher_node,
+        joint_state_publisher_node,
         rviz_node
     ]
 
