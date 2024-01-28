@@ -1,0 +1,68 @@
+[0.071s] Invoking command in '/home/hephaestus/ros2_ws/src/build/diy_robotarm_wer24_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/hephaestus/ros2_ws/src/diy_robotarm_wer24_description -DCMAKE_INSTALL_PREFIX=/home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description
+[0.200s] -- The C compiler identification is GNU 11.4.0
+[0.305s] -- The CXX compiler identification is GNU 11.4.0
+[0.331s] -- Detecting C compiler ABI info
+[0.464s] -- Detecting C compiler ABI info - done
+[0.491s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.491s] -- Detecting C compile features
+[0.493s] -- Detecting C compile features - done
+[0.504s] -- Detecting CXX compiler ABI info
+[0.644s] -- Detecting CXX compiler ABI info - done
+[0.653s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.654s] -- Detecting CXX compile features
+[0.654s] -- Detecting CXX compile features - done
+[0.658s] -- Found ament_cmake: 1.3.6 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.910s] -- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+[1.089s] -- Found xacro: 2.0.8 (/opt/ros/humble/share/xacro/cmake)
+[1.091s] -- Found ament_lint_auto: 0.12.9 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.253s] -- Added test 'flake8' to check Python code syntax and style conventions
+[1.254s] -- Added test 'lint_cmake' to check CMake code style
+[1.255s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[1.259s] -- Added test 'xmllint' to check XML markup files
+[1.261s] -- Configuring done
+[1.266s] -- Generating done
+[1.267s] -- Build files have been written to: /home/hephaestus/ros2_ws/src/build/diy_robotarm_wer24_description
+[1.273s] Invoked command in '/home/hephaestus/ros2_ws/src/build/diy_robotarm_wer24_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/hephaestus/ros2_ws/src/diy_robotarm_wer24_description -DCMAKE_INSTALL_PREFIX=/home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description
+[1.276s] Invoking command in '/home/hephaestus/ros2_ws/src/build/diy_robotarm_wer24_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/hephaestus/ros2_ws/src/build/diy_robotarm_wer24_description -- -j8 -l8
+[1.369s] Invoked command in '/home/hephaestus/ros2_ws/src/build/diy_robotarm_wer24_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/hephaestus/ros2_ws/src/build/diy_robotarm_wer24_description -- -j8 -l8
+[1.443s] Invoking command in '/home/hephaestus/ros2_ws/src/build/diy_robotarm_wer24_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/hephaestus/ros2_ws/src/build/diy_robotarm_wer24_description
+[1.454s] -- Install configuration: ""
+[1.455s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf
+[1.455s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/diy_robotarm.ros2_control.xacro
+[1.455s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/materials.xacro
+[1.455s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/diy_robotarm_macro.xacro
+[1.456s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/diy_robotarm_main.urdf.xacro
+[1.456s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/common.xacro
+[1.456s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//launch
+[1.456s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//launch/visualize.launch.py
+[1.457s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes
+[1.457s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes/collision
+[1.457s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes/visual
+[1.457s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes/visual/link_6.stl
+[1.458s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes/visual/link_4.stl
+[1.464s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes/visual/link_5.stl
+[1.471s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes/visual/base.stl
+[1.477s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes/visual/link_2.stl
+[1.484s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes/visual/link_1.stl
+[1.490s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes/visual/link_3.stl
+[1.497s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//rviz
+[1.497s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//config
+[1.497s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//config/joint_limits.yaml
+[1.498s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//config/default_kinematics.yaml
+[1.498s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//config/initial_positions.yaml
+[1.498s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/ament_index/resource_index/package_run_dependencies/diy_robotarm_wer24_description
+[1.498s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/ament_index/resource_index/parent_prefix_path/diy_robotarm_wer24_description
+[1.499s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/environment/ament_prefix_path.sh
+[1.499s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/environment/ament_prefix_path.dsv
+[1.499s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/environment/path.sh
+[1.499s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/environment/path.dsv
+[1.500s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/local_setup.bash
+[1.500s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/local_setup.sh
+[1.500s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/local_setup.zsh
+[1.500s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/local_setup.dsv
+[1.501s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/package.dsv
+[1.501s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/ament_index/resource_index/packages/diy_robotarm_wer24_description
+[1.501s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/cmake/diy_robotarm_wer24_descriptionConfig.cmake
+[1.501s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/cmake/diy_robotarm_wer24_descriptionConfig-version.cmake
+[1.502s] -- Installing: /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description/package.xml
+[1.505s] Invoked command in '/home/hephaestus/ros2_ws/src/build/diy_robotarm_wer24_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/hephaestus/ros2_ws/src/build/diy_robotarm_wer24_description
