@@ -1,0 +1,10 @@
+#this file specifies a collision-free initial position for our robot_model in specified ros2 structure (acessed in other urdf files)
+
+#NOTE: can be adapted when integrating this package into a whole scene
+
+axis1: 0
+axis2: 0
+axis3: 0
+axis4: 0
+axis5: 0
+axis6: 0

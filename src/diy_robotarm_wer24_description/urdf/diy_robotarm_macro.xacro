@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!--include the config files with fixed parameters-->
+  <xacro:include filename="$(find diy_soft_gripper_description)/urdf/materials.urdf.xacro" />
+
+
+
+<!--define the main kinematic chain with links and joints (using the config-files)-->
+  <xacro:macro name="robot_arm" params="tf_prefix parent *origin">
+
+    <!-- Achse fix Base to parent passed in the main_urdf.xacro-->
+    <joint name="${tf_prefix}gripper_to_parent" type="fixed">
+        <parent link="${parent}"/>
+        <child link="${tf_prefix}base_link"/>
+    </joint>
+
+    <!-- Link0 = Basecone -->
+    <link name="${tf_prefix}base_link">
+      <origin xyz="0 0 0"/>
+      <visual>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/base.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+      <!-- <collision>
+        <origin xyz="0 0 0 rpy = 0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/base.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="red"/>
+      </collision> -->
+    </link>
+
+    <!-- Achse 1 (Base = World)-->
+    <joint name="${tf_prefix}axis_1" type="revolute">
+      <origin xyz="$(base-link1_x) $(base-link1_y) $(base-link2_z)" rpy="$(base-link1_roll) $(base-link1_pitch) $(base-link1_yaw)"/> 
+      <parent link="base_link"/>
+      <child link="link_1"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <limit lower="${axis_1_lower_limit}" upper="${axis_1_upper_limit}" velocity="${axis_1_velocity_limit}"/> 
+    </joint>
+
+    <!-- Link1 = Shoulder -->
+    <link name="${tf_prefix}link_1">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/> <!--this transformations are defined local on this reference set-->
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+       <!-- <collision>
+        <origin xyz="0 0 0 rpy = 0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="red"/>
+      </collision> -->
+    </link>
+
+    <!-- Achse 2 -->
+    <joint name="${tf_prefix}axis_2" type="revolute">
+      <origin xyz="$(link1-link2_x) $(link1-link2_y) $(link1-link2_z)" rpy="$(link1-link2_roll) $(link1-link2_pitch) $(link1-link2_yaw)"/> 
+      <parent link="link_1"/>
+      <child link="link_2"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <limit lower="${axis_2_lower_limit}" upper="${axis_2_upper_limit}" velocity="${axis_2_velocity_limit}"/> 
+    </joint>
+
+    <!-- Link2 = Upper_Arm -->
+    <link name="${tf_prefix}link_2">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+      <!-- <collision>
+        <origin xyz="0 0 0 rpy = 0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_2.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="red"/>
+      </collision> -->
+    </link>
+
+    <!-- Achse 3 -->
+    <joint name="${tf_prefix}axis_3" type="revolute">
+      <origin xyz="$(link2-link3_x) $(link2-link3_y) $(link2-link3_z)" rpy="$(link2-link3_roll) $(link2-link3_pitch) $(link2-link3_yaw)"/> 
+      <parent link="link_2"/>
+      <child link="link_3"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <limit lower="${axis_3_lower_limit}" upper="${axis_3_upper_limit}" velocity="${axis_3_velocity_limit}"/> 
+    </joint>
+
+    <!-- Link3 = Forearm -->
+    <link name="l${tf_prefix}ink_3">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_3.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+      <!-- <collision>
+        <origin xyz="0 0 0 rpy = 0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_3.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="red"/>
+      </collision> -->
+    </link>
+
+    <!-- Achse 4 -->
+    <joint name="${tf_prefix}axis_4" type="revolute">
+      <origin xyz="$(link3-link4_x) $(link3-link4_y) $(link3-link4_z)" rpy="$(link3-link4_roll) $(link3-link4_pitch) $(link3-link4_yaw)"/> 
+      <parent link="link_3"/>
+      <child link="link_4"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <limit lower="${axis_4_lower_limit}" upper="${axis_4_upper_limit}" velocity="${axis_4_velocity_limit}"/> 
+    </joint>
+
+    <!-- Link4 = Wrist 1 -->
+    <link name="${tf_prefix}link_4">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_4.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+      <!-- <collision>
+        <origin xyz="0 0 0 rpy = 0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_4.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="red"/>
+      </collision> -->
+    </link>
+
+    <!-- Achse 5 -->
+    <joint name="${tf_prefix}axis_5" type="revolute">
+      <origin xyz="$(link4-link5_x) $(link4-link5_y) $(link4-link5_z)" rpy="$(link4-link5_roll) $(link4-link5_pitch) $(link4-link5_yaw)"/> 
+      <parent link="link_4"/>
+      <child link="link_5"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <limit lower="${axis_5_lower_limit}" upper="${axis_5_upper_limit}" velocity="${axis_5_velocity_limit}"/> 
+    </joint>
+
+    <!-- Link5 = Wrist 2 -->
+    <link name="${tf_prefix}link_5">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_5.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+      <!-- <collision>
+        <origin xyz="0 0 0 rpy = 0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_5.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="red"/>
+      </collision> -->
+    </link>
+
+    <!-- Achse 6 -->
+    <joint name="${tf_prefix}axis_6" type="revolute">
+      <origin xyz="$(link5-link6_x) $(link5-link6_y) $(link5-link6_z)" rpy="$(link5-link6_roll) $(link5-link6_pitch) $(link5-link6_yaw)"/> 
+      <parent link="link_5"/>
+      <child link="link_6"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <limit lower="${axis_6_lower_limit}" upper="${axis_6_upper_limit}" velocity="${axis_6_velocity_limit}"/> 
+    </joint>
+
+    <!-- Link6 = Flange -->
+    <link name="${tf_prefix}link_6">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_6.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="grey"/>
+      </visual>
+      <!-- <collision>
+        <origin xyz="0 0 0 rpy = 0 0 0"/>
+        <geometry>
+          <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_6.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="red"/>
+      </collision> -->
+    </link>
+  
+  </xacro:macro>
+</robot>
