@@ -50,7 +50,7 @@ RUN cd /home/$USER/dependencies/diy_robotarm_wer24_description_ws && \
 
 # Add built diy-robotarm package to entrypoint
 USER root
-RUN sed -i 's|exec "\$@"|source "/home/'"${USER}"'/dependencies/robot_ws/install/setup.bash"\n&|' /ros_entrypoint.sh
+RUN sed -i 's|exec "\$@"|source "/home/'"${USER}"'/dependencies/diy_robotarm_wer24_description_ws/install/setup.bash"\n&|' /ros_entrypoint.sh
 USER $USER
 
 ##############################################################################
