@@ -12,7 +12,7 @@
         sim_gazebo:=false
         sim_ignition:=false
         headless_mode:=false
-        initial_positions:=${dict(shoulder=0.0,upper_arm=0.0,forearm=0.0,wrist_1_joint=0.0,wrist_2_joint=0.0,wrist_3_joint=0.0)}
+        initial_positions:=${dict(shoulder=0.0,upper_arm=0.0,forearm=0.0,wrist_1=0.0,wrist_2=0.0,wrist_3=0.0)}
         script_filename
         output_recipe_filename
         input_recipe_filename
@@ -73,7 +73,7 @@
                     <!--define state interface RobotToPC (NOTE: our Hardware is an open-loop control system!)-->
                 <state_interface name="position">
                 <!-- initial position for the FakeSystem and simulation -->
-                    <param name="initial_value">${initial_positions['shoulder']}</param>
+                    <param name="initial_value">${initial_positions["shoulder"]}</param>
                 </state_interface>
             </joint>
 
@@ -84,7 +84,7 @@
                 </command_interface>
                 <state_interface name="position">
                 <!-- initial position for the FakeSystem and simulation -->
-                    <param name="initial_value">${initial_positions['upper_arm']}</param>
+                    <param name="initial_value">${initial_positions["upper_arm"]}</param>
                 </state_interface>
             </joint>
 
@@ -95,7 +95,7 @@
                 </command_interface>
                 <state_interface name="position">
                 <!-- initial position for the FakeSystem and simulation -->
-                    <param name="initial_value">${initial_positions['forearm']}</param>
+                    <param name="initial_value">${initial_positions["forearm"]}</param>
                 </state_interface>
             </joint>
 
@@ -106,7 +106,7 @@
                 </command_interface>
                 <state_interface name="position">
                 <!-- initial position for the FakeSystem and simulation -->
-                    <param name="initial_value">${initial_positions['wrist_1']}</param>
+                    <param name="initial_value">${initial_positions["wrist_1"]}</param>
                 </state_interface>
             </joint>
 
@@ -117,7 +117,7 @@
                 </command_interface>
                 <state_interface name="position">
                 <!-- initial position for the FakeSystem and simulation -->
-                    <param name="initial_value">${initial_positions['wrist_2']}</param>
+                    <param name="initial_value">${initial_positions["wrist_2"]}</param>
                 </state_interface>
             </joint>
             
@@ -128,7 +128,7 @@
                 </command_interface>
                 <state_interface name="position">
                 <!-- initial position for the FakeSystem and simulation -->
-                    <param name="initial_value">${initial_positions['wrist_3']}</param>
+                    <param name="initial_value">${initial_positions["wrist_3"]}</param>
                 </state_interface>
             </joint>
 

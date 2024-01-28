@@ -3,6 +3,7 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.descriptions import ParameterValue
 
 
 def generate_launch_description():
@@ -29,10 +30,11 @@ def generate_launch_description():
             tf_prefix,
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
 
+    #convert robot_description_content to string, thet it can be passed as yaml to the robot_state_publisher Node --> unsafe without !
+    robot_description = {"robot_description": ParameterValue(robot_description_content, value_type=str)} 
+    
     #rviz_config_file = PathJoinSubstitution([FindPackageShare(description_package), "rviz", "rviz_config.rviz"]) # define path to rviz-config file
-
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",

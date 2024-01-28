@@ -3,7 +3,7 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from launch_ros.parameter_descriptions import ParameterValue
+from launch_ros.descriptions import ParameterValue
 
 
 def generate_launch_description():
@@ -30,16 +30,16 @@ def generate_launch_description():
             tf_prefix,
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
 
+    robot_description = {"robot_description": ParameterValue(robot_description_content, value_type=str)}
+    
     #rviz_config_file = PathJoinSubstitution([FindPackageShare(description_package), "rviz", "rviz_config.rviz"]) # define path to rviz-config file
-
 
     robot_state_publisher_node = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="both",
-        parameters=ParameterValue(robot_description, value_type=str),
+        parameters=[robot_description],
     )
     rviz_node = Node(
         package="rviz2",

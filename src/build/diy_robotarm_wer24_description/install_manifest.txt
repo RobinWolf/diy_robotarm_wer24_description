@@ -1,8 +1,9 @@
-/home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/diy_robotarm.ros2_control.xacro
-/home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/materials.xacro
-/home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/diy_robotarm_macro.xacro
+/home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/common.urdf.xacro
+/home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/materials.urdf.xacro
+/home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/diy_robotarm.ros2_control.urdf.xacro
+/home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/your_robot.urdf
 /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/diy_robotarm_main.urdf.xacro
-/home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/common.xacro
+/home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//urdf/diy_robotarm_macro.urdf.xacro
 /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//launch/visualize.launch.py
 /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes/visual/link_6.stl
 /home/hephaestus/ros2_ws/src/install/diy_robotarm_wer24_description/share/diy_robotarm_wer24_description//meshes/visual/link_4.stl

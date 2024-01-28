@@ -4,8 +4,8 @@
 <!--#######################################################################################################################################-->
 <!--include the helpers with fixed parameters-->
 <!--#######################################################################################################################################-->
-  <xacro:include filename="$(find diy_robotarm_wer24_description)/urdf/materials.xacro" />
-  <xacro:include filename="$(find diy_robotarm_wer24_description)/urdf/common.xacro" />
+  <xacro:include filename="$(find diy_robotarm_wer24_description)/urdf/materials.urdf.xacro" />
+  <xacro:include filename="$(find diy_robotarm_wer24_description)/urdf/common.urdf.xacro" />
 
 
 <!--#######################################################################################################################################-->
@@ -58,7 +58,7 @@
 
     <xacro:if value="${generate_ros2_control_tag}">
         <!-- ros2 control include -->
-        <xacro:include filename="$(find diy_robotarm_wer24_description)/urdf/diy_robotarm.ros2_control.xacro" />
+        <xacro:include filename="$(find diy_robotarm_wer24_description)/urdf/diy_robotarm.ros2_control.urdf.xacro" />
         <!-- ros2 control instance -->
         <xacro:wer24_ros2_control
           name="${name}"
