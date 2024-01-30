@@ -86,6 +86,7 @@
 <!--#######################################################################################################################################-->
 <!--define the main kinematic chain with links and joints (using the config-files)-->
 <!--#######################################################################################################################################-->
+    <xacro:materials tf_prefix="${tf_prefix}"/>
 
     <!-- Achse fix Base to parent passed in the main_urdf.xacro-->
     <joint name="${tf_prefix}robotarm_to_parent" type="fixed">
