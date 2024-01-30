@@ -49,7 +49,7 @@ kinematics:
 
   wrist_3:
     x: 0
-    y: -0.03546
+    y: -0.04546
     z: 0.02683
     roll: 1.57079
     pitch: 0
