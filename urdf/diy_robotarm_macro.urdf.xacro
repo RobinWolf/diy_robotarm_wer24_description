@@ -128,7 +128,7 @@
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_1.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="grey"/>
+        <material name="${tf_prefix}grey"/>
       </visual>
        <!-- <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
@@ -155,7 +155,7 @@
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="grey"/>
+        <material name="${tf_prefix}grey"/>
       </visual>
       <!-- <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
@@ -182,7 +182,7 @@
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_3.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="grey"/>
+        <material name="${tf_prefix}grey"/>
       </visual>
       <!-- <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
@@ -209,7 +209,7 @@
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_4.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="grey"/>
+        <material name="${tf_prefix}grey"/>
       </visual>
       <!-- <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
@@ -236,7 +236,7 @@
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_5.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="grey"/>
+        <material name="${tf_prefix}grey"/>
       </visual>
       <!-- <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
@@ -263,7 +263,7 @@
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/visual/link_6.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="grey"/>
+        <material name="${tf_prefix}grey"/>
       </visual>
       <!-- <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
