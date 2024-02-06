@@ -51,6 +51,7 @@
         fake_sensor_commands="$(arg fake_sensor_commands)"
         initial_positions="${xacro.load_yaml(initial_positions_file)}"
         robot_ip="$(arg robot_ip)"
+        robot_ssid="$(arg robot_ssid)"
         >
         <origin xyz="0 0 0" rpy="0 0 0" />          <!-- position robot in the world -->
     </xacro:diy_robotarm>
