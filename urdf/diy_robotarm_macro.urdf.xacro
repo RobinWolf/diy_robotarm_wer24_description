@@ -55,8 +55,8 @@
           fake_sensor_commands="${fake_sensor_commands}"
           tf_prefix="${tf_prefix}"
           robot_ip="${robot_ip}"
-          robot_ip="${robot_ssid}"
-          />
+          robot_ssid="${robot_ssid}"
+        />
     </xacro:if>
 
 <!--#######################################################################################################################################-->
