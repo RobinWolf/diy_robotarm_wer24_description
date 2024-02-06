@@ -24,21 +24,9 @@
     generate_ros2_control_tag:=true
     use_fake_hardware:=false
     fake_sensor_commands:=false
-    sim_gazebo:=false
-    sim_ignition:=false
-    headless_mode:=false
     initial_positions:=${dict(shoulder=0.0,upper_arm=0.0,forearm=0.0,wrist_1=0.0,wrist_2=0.0,wrist_3=0.0)}
     robot_ip:=0.0.0.0
-    script_filename:=to_be_filled_by_ur_robot_driver
-    output_recipe_filename:=to_be_filled_by_ur_robot_driver
-    input_recipe_filename:=to_be_filled_by_ur_robot_driver
-    reverse_port:=50001
-    script_sender_port:=50002
-    reverse_ip:=0.0.0.0
-    script_command_port:=50004
-    trajectory_port:=50003
-    non_blocking_read:=true
-    keep_alive_count:=2"
+    robot_ssid:=0.0.0.0"
   >
 
 <!--#######################################################################################################################################-->
@@ -47,7 +35,7 @@
     <xacro:read_model_data
       joint_limits_parameters_file="${joint_limits_parameters_file}"
       kinematics_parameters_file="${kinematics_parameters_file}"
-      force_abs_paths="${sim_gazebo or sim_ignition}"/>
+    />
 
 
   <!--#######################################################################################################################################-->
@@ -65,21 +53,9 @@
           use_fake_hardware="${use_fake_hardware}"
           initial_positions="${initial_positions}"
           fake_sensor_commands="${fake_sensor_commands}"
-          headless_mode="${headless_mode}"
-          sim_gazebo="${sim_gazebo}"
-          sim_ignition="${sim_ignition}"
-          script_filename="${script_filename}"
-          output_recipe_filename="${output_recipe_filename}"
-          input_recipe_filename="${input_recipe_filename}"
           tf_prefix="${tf_prefix}"
           robot_ip="${robot_ip}"
-          reverse_port="${reverse_port}"
-          script_sender_port="${script_sender_port}"
-          reverse_ip="${reverse_ip}"
-          script_command_port="${script_command_port}"
-          trajectory_port="${trajectory_port}"
-          non_blocking_read="${non_blocking_read}"
-          keep_alive_count="${keep_alive_count}"
+          robot_ip="${robot_ssid}"
           />
     </xacro:if>
 
