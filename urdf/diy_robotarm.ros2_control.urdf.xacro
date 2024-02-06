@@ -8,58 +8,31 @@
 <!--#######################################################################################################################################-->
     <xacro:macro name="wer24_ros2_control" params="
         name
-        use_fake_hardware:=false fake_sensor_commands:=false
-        sim_gazebo:=false
-        sim_ignition:=false
-        headless_mode:=false
+        use_fake_hardware:=false
+        fake_sensor_commands:=false
         initial_positions:=${dict(shoulder=0.0,upper_arm=0.0,forearm=0.0,wrist_1=0.0,wrist_2=0.0,wrist_3=0.0)}
-        script_filename
-        output_recipe_filename
-        input_recipe_filename
         tf_prefix
         robot_ip
-        reverse_port:=50001
-        script_sender_port:=50002
-        reverse_ip:=0.0.0.0
-        script_command_port:=50004
-        trajectory_port:=50003
-        non_blocking_read:=true
-        keep_alive_count:=2
+        robot_ssid
         ">
 
 <!--#######################################################################################################################################-->
-<!--build ros2_control configuration-->
+<!--build ros2_control hardware configuration, these parameters are stored in info_ and get called in the esp32_inteerface (driver package)-->
 <!--#######################################################################################################################################-->
-        <ros2_control name="${name}" type="system">
+        <ros2_control name="${name}" type="system"> <!--System means that there is a complex multi-axis hardware (read and write capabilities)-->
         <!--load hardware or simulation plugins-->
             <hardware>
-                <xacro:if value="${sim_gazebo}">
-                <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-                </xacro:if>
-                <xacro:if value="${sim_ignition}">
-                <plugin>ign_ros2_control/IgnitionSystem</plugin>
-                </xacro:if>
                 <xacro:if value="${use_fake_hardware}">
                 <plugin>mock_components/GenericSystem</plugin>
                 <param name="fake_sensor_commands">${fake_sensor_commands}</param>
                 <param name="state_following_offset">0.0</param>
                 </xacro:if>
                 <!--unless no simulation is required, use real hardware-->
-                <xacro:unless value="${use_fake_hardware or sim_gazebo or sim_ignition}">
-                    <plugin>ur_robot_driver/URPositionHardwareInterface</plugin>    <!--call our custom plugin for interfacing with the esp-->
+                <xacro:unless value="${use_fake_hardware}">
+                    <plugin>esp32_robot_driver/ESP32Hardware</plugin>    <!--call our plugin for interfacing with the esp (this is the Driver!)-->
                     <param name="robot_ip">${robot_ip}</param>
-                    <param name="script_filename">${script_filename}</param>
-                    <param name="output_recipe_filename">${output_recipe_filename}</param>
-                    <param name="input_recipe_filename">${input_recipe_filename}</param>
-                    <param name="headless_mode">${headless_mode}</param>
-                    <param name="reverse_port">${reverse_port}</param>
-                    <param name="script_sender_port">${script_sender_port}</param>
-                    <param name="reverse_ip">${reverse_ip}</param>
-                    <param name="script_command_port">${script_command_port}</param>
-                    <param name="trajectory_port">${trajectory_port}</param>
+                    <param name="robot_ssid">${robot_ssid}</param>
                     <param name="tf_prefix">${tf_prefix}</param>
-                    <param name="non_blocking_read">${non_blocking_read}</param>
-                    <param name="keep_alive_count">${keep_alive_count}</param>
                 </xacro:unless>
             </hardware>
 
@@ -131,53 +104,6 @@
                     <param name="initial_value">${initial_positions["wrist_3"]}</param>
                 </state_interface>
             </joint>
-
-            <!--connection to real state interfaces, when not using gazabo, ignition-->
-            <xacro:unless value="${sim_gazebo or sim_ignition}">
-                <sensor name="${tf_prefix}tcp_fts_sensor">
-                    <state_interface name="force.x"/>
-                    <state_interface name="force.y"/>
-                    <state_interface name="force.z"/>
-                    <state_interface name="torque.x"/>
-                    <state_interface name="torque.y"/>
-                    <state_interface name="torque.z"/>
-                </sensor>
-
-<!-- NOTE The following are joints used only for testing with fake hardware and will change in the future -->
-                <gpio name="${tf_prefix}speed_scaling">
-                    <state_interface name="speed_scaling_factor"/>
-                    <param name="initial_speed_scaling_factor">1</param>
-                    <command_interface name="target_speed_fraction_cmd"/>
-                    <command_interface name="target_speed_fraction_async_success"/>
-                </gpio>
-
-                <gpio name="${tf_prefix}payload">
-                    <command_interface name="mass"/>
-                    <command_interface name="cog.x"/>
-                    <command_interface name="cog.y"/>
-                    <command_interface name="cog.z"/>
-                    <command_interface name="payload_async_success"/>
-                </gpio>
-
-                <gpio name="${tf_prefix}resend_robot_program">
-                    <command_interface name="resend_robot_program_cmd"/>
-                    <command_interface name="resend_robot_program_async_success"/>
-                </gpio>
-
-                <gpio name="${tf_prefix}hand_back_control">
-                    <command_interface name="hand_back_control_cmd"/>
-                    <command_interface name="hand_back_control_async_success"/>
-                </gpio>
-
-                <gpio name="${tf_prefix}zero_ftsensor">
-                    <command_interface name="zero_ftsensor_cmd"/>
-                    <command_interface name="zero_ftsensor_async_success"/>
-                </gpio>
-
-                <gpio name="${tf_prefix}system_interface">
-                    <state_interface name="initialized"/>
-                </gpio>
-            </xacro:unless>
 
         </ros2_control>
     </xacro:macro>
