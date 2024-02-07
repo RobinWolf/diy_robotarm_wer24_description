@@ -23,8 +23,8 @@
     use_fake_hardware:=false
     fake_sensor_commands:=false
     initial_positions:=${dict(shoulder=0.0,upper_arm=0.0,forearm=0.0,wrist_1=0.0,wrist_2=0.0,wrist_3=0.0)}
-    robot_ip:=0.0.0.0
-    robot_ssid:=0.0.0.0"
+    robot_ip
+    robot_ssid"
   >
 
 <!--#######################################################################################################################################-->
