@@ -20,8 +20,8 @@
     <xacro:arg name="kinematics_params" default="$(find diy_robotarm_wer24_description)/config/default_kinematics.yaml"/>
 
     <!-- ros2_control related parameters -->
-    <xacro:arg name="robot_ip" default="0.0.0.0" />
-    <xacro:arg name="robot_ssid" default="0.0.0.0" />
+    <xacro:arg name="robot_ip" default="NaN" />
+    <xacro:arg name="robot_ssid" default="NaN" />
 
 
     <!-- Simulation parameters -->
