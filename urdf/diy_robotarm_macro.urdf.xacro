@@ -42,8 +42,6 @@
   <!--include ros2 control and create an instance if param generate_ros2_control_tag == true and pass necessary params-->
   <!--#######################################################################################################################################-->
 
-  <!--still to modify delete not necessary params-->
-
     <xacro:if value="${generate_ros2_control_tag}">
         <!-- ros2 control include -->
         <xacro:include filename="$(find diy_robotarm_wer24_description)/urdf/diy_robotarm.ros2_control.urdf.xacro" />
@@ -79,13 +77,13 @@
         </geometry>
         <material name="${tf_prefix}grey"/>
       </visual>
-      <!-- <collision>
+      <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/base.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="red"/>
-      </collision> -->
+        <material name="${tf_prefix}red"/>
+      </collision>
     </link>
 
     <!-- Achse 1 (Base = World)-->
@@ -106,13 +104,13 @@
         </geometry>
         <material name="${tf_prefix}grey"/>
       </visual>
-       <!-- <collision>
+      <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_1.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="red"/>
-      </collision> -->
+        <material name="${tf_prefix}red"/>
+      </collision>
     </link>
 
     <!-- Achse 2 -->
@@ -133,13 +131,13 @@
         </geometry>
         <material name="${tf_prefix}grey"/>
       </visual>
-      <!-- <collision>
+      <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="red"/>
-      </collision> -->
+        <material name="${tf_prefix}red"/>
+      </collision>
     </link>
 
     <!-- Achse 3 -->
@@ -160,13 +158,13 @@
         </geometry>
         <material name="${tf_prefix}grey"/>
       </visual>
-      <!-- <collision>
+      <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_3.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="red"/>
-      </collision> -->
+        <material name="${tf_prefix}red"/>
+      </collision>
     </link>
 
     <!-- Achse 4 -->
@@ -187,13 +185,13 @@
         </geometry>
         <material name="${tf_prefix}grey"/>
       </visual>
-      <!-- <collision>
+      <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_4.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="red"/>
-      </collision> -->
+        <material name="${tf_prefix}red"/>
+      </collision>
     </link>
 
     <!-- Achse 5 -->
@@ -214,13 +212,13 @@
         </geometry>
         <material name="${tf_prefix}grey"/>
       </visual>
-      <!-- <collision>
+      <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_5.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="red"/>
-      </collision> -->
+        <material name="${tf_prefix}red"/>
+      </collision>
     </link>
 
     <!-- Achse 6 -->
@@ -241,13 +239,13 @@
         </geometry>
         <material name="${tf_prefix}grey"/>
       </visual>
-      <!-- <collision>
+      <collision>
         <origin xyz="0 0 0 rpy = 0 0 0"/>
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/link_6.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="red"/>
-      </collision> -->
+        <material name="${tf_prefix}red"/>
+      </collision>
     </link>
   
   </xacro:macro>
