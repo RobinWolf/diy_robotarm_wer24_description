@@ -12,8 +12,6 @@
 <!--set some parameters with default values used by the macros (kinematics description, simulation and control)-->
 <!--#######################################################################################################################################-->
 
-<!--still to modify delete not necessary params *** only use fake hardware should be available???-->
-
   <xacro:macro name="diy_robotarm" params="
     name
     tf_prefix
