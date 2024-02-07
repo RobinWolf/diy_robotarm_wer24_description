@@ -78,7 +78,7 @@
         <material name="${tf_prefix}grey"/>
       </visual>
       <collision>
-        <origin xyz="0 0 0 rpy = 0 0 0"/>
+        <origin xyz="0 0 0"/>
         <geometry>
           <mesh filename="package://diy_robotarm_wer24_description/meshes/collision/base.stl" scale="0.001 0.001 0.001"/>
         </geometry>
