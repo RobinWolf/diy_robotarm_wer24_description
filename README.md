@@ -8,9 +8,11 @@ The main idea is, that this repo can be cloned inside a docker-container contain
 
 Refer to the main Readme.md https://github.com/mathias31415/diy_robotics/blob/main/ROS-Packages/ROS-OVERVIEW.md for a general overview.
 
+![arm_classification](images/arm_classification.png)
+
 ## Package Structure
 
-![arm_files](images/arm_files.png)
+![arm_files_tree](images/arm_files_tree.png)
 
  - images and README.md are only for docomentation purposes
  - Dockerfile, run.sh and dds_profile.xml are used to create the docker container where ROS is running in
