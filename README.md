@@ -25,9 +25,19 @@ Refer to the main Readme.md https://github.com/mathias31415/diy_robotics/blob/ma
 For this URDF definition we use the ROS xacro extention to ensure clear structures and the best modularity.
 In addition to the xacro sub-urdf definitions we have implemented the usage of several confuguration files in the "config" directory.
 
+On the one side there is the default_kinematics.yaml file which contains all of the kinematical properties (position and orientation of the joints, xyz and rpy) and on the other side there is the joint_limits.yaml which contains joint limits (position, velocity, acceleration and effort). Don't be surprised why all joints are specified with position limits of +/-pi, that are not our real motion limits. We have decided to define position limits on the ESP32 hardware-driver side, which are checked before a new setpoint is set. So the config file only is taken into account if you are using fake_hardware. If you are using real_hardware, the limits specified on the ESP32 side are taken into account.
 
-The following graphic shows how the full URDF definition of the arm was build and whichh parameters are passed in between the diffrent macros.
-
+The following graphic shows how the full URDF definition of the arm was build and which parameters are passed in between the diffrent macros.
 ![urdf_structure](images/urdf_structure.png)
+
+The whole CAD robot arm model with its 6 links and 6 joints was CAD-designed in respect to the dernavit-hartenberg convention. This is a common practice to describe kinematics in robotics.
+So all exported link-meshes had already their right oriented reference set. That's why we can specify the link origins in equal to the joint origin which connects the specific link to its parent.
+The graphic below shows the full kinematic chain of our arm (from world to link_6/ flange) with reference sets in respect to dernavit hartenberg convention.
+
+![dh_kos](images/dh_kos.png)
+
+
+
+
 
 ## Launch
