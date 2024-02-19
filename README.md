@@ -38,13 +38,13 @@ red = X-axis<br>
 green = Y-axis<br>
 blue = Z-axis (joint-axis)<br>
 
-On the left hand side the visual-meshes of the robot model are displayed. We also defined a simplified collision geoemtry for collision checking and motion planning. This is shown on the right hand side.
+On the left hand side the visual-meshes of the robot model are displayed. We also defined a simplified collision geoemtry for collision checking and motion planning. This is shown on the right hand side. All meshes are stored in teh "meshes" directory.
 
 ![dh_kos_col](images/dh_kos_col.png)
 
 
 ## Launch
 
-By running the launch file ```visualization.launch.py```` automatically when you start the docker container by sourcing the run script ```./run.sh``` you will launch Rviz and the Joint State Publisher GUI. This is only for visualization and checking purposes, because we don't do a real bringup of the robot model. Joint States are just published by the GUI on the specific ROS-topic.
+By running the launch file ````visualization.launch.py```` automatically when you start the docker container by sourcing the run script ````./run.sh```` you will launch Rviz and the Joint State Publisher GUI. This is only for visualization and checking purposes, because we don't do a real bringup of the robot model. Joint States are just published by the GUI on the specific ROS-topic.
 
 Now you should be able to move the robot arm around in Rviz by sliding the bars of the Joint State Publisher GUI. 
