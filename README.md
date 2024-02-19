@@ -33,6 +33,9 @@ The following graphic shows how the full URDF definition of the arm was build an
 The whole CAD robot arm model with its 6 links and 6 joints was CAD-designed in respect to the dernavit-hartenberg convention. This is a common practice to describe kinematics in robotics.
 So all exported link-meshes had already their right oriented reference set. That's why we can specify the link origins in equal to the joint origin which connects the specific link to its parent.
 The graphic below shows the full kinematic chain of our arm (from world to link_6/ flange) with reference sets in respect to dernavit hartenberg convention.
+red = X-axis
+green = Y-axis
+blue = Z-axis (joint-axis)
 
 ![dh_kos](images/dh_kos.png)
 
