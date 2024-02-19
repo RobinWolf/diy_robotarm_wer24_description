@@ -26,6 +26,8 @@ For this URDF definition we use the ROS xacro extention to ensure clear structur
 In addition to the xacro sub-urdf definitions we have implemented the usage of several confuguration files in the "config" directory.
 
 
-The following graphic shows how the full URDF definition of the arm was build
+The following graphic shows how the full URDF definition of the arm was build and whichh parameters are passed in between the diffrent macros.
+
+![urdf_structure](images/urdf_structure.png)
 
 ## Launch
