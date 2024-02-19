@@ -40,7 +40,7 @@ blue = Z-axis (joint-axis)<br>
 
 On the left hand side the visual-meshes of the robot model are displayed. We also defined a simplified collision geoemtry for collision checking and motion planning. This is shown on the right hand side.
 
-![dh_params_col](images/dh_params_col.png)
+![dh_kos_col](images/dh_kos_col.png)
 
 
 ## Launch
