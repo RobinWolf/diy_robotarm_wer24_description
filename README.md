@@ -30,6 +30,8 @@ On the one side there is the default_kinematics.yaml file which contains all of 
 The following graphic shows how the full URDF definition of the arm was build and which parameters are passed in between the diffrent macros.
 ![urdf_structure](images/urdf_structure.png)
 
+The definition ROS-control inside the description package seems to be a bit weired, but there are no other opportunities to structure that. It's based on an architecture decision by the ROS2-developers which was in my opinion not the best. But now we have to deal with it. If you are currently reading the wohle Readme-Series to the main diy-robotics project, we will come back to this issue in the diy_robotarm_wer24_driver Readme: https://github.com/RobinWolf/diy_robotarm_wer24_driver/blob/main/README.md
+
 The whole CAD robot arm model with its 6 links and 6 joints was CAD-designed in respect to the dernavit-hartenberg convention. This is a common practice to describe kinematics in robotics.
 So all exported link-meshes had already their right oriented reference set. That's why we can specify the link origins in equal to the joint origin which connects the specific link to its parent.
 The graphic below shows the full kinematic chain of our arm (from world to link_6/ flange) with reference sets in respect to dernavit hartenberg convention.
