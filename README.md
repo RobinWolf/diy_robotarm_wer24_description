@@ -20,4 +20,10 @@ Refer to the main Readme.md https://github.com/mathias31415/diy_robotics/blob/ma
 
 ## URDF Definition
 
+For this URDF definition we use the ROS xacro extention to ensure clear structures and the best modularity.
+In addition to the xacro sub-urdf definitions we have implemented the usage of several confuguration files in the "config" directory.
+
+
+The following graphic shows how the full URDF definition of the arm was build
+
 ## Launch
