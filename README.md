@@ -16,7 +16,6 @@ Refer to the main Readme.md https://github.com/mathias31415/diy_robotics/blob/ma
 
  - images and README.md are only for docomentation purposes
  - Dockerfile, run.sh and dds_profile.xml are used to create the docker container where ROS is running in
- - build, install ansd log are directories created by ROS when building the package with ament_cmake
  - CMakeLists.txt and package.xml are defining this build process (wich dependencies are needed, which file should be installed where in the created directories, ...)
  - meshes, rviz, urdf, config and launch are the directories which are containing the source files for this package, they will be described in the following
 
