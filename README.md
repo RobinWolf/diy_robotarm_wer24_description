@@ -21,7 +21,7 @@ Refer to the main Readme.md https://github.com/mathias31415/diy_robotics/blob/ma
 
 ## URDF Definition
 
-For this URDF definition we use the ROS xacro extention to ensure clear structures and the best modularity.
+For this URDF definition we use the ROS xacro extention to ensure clear structures and the best modularity. If you want to know ho to define a URDF-model please refer to our gripper description repo: https://github.com/RobinWolf/diy_soft_gripper_description 
 In addition to the xacro sub-urdf definitions we have implemented the usage of several confuguration files in the "config" directory.
 
 On the one side there is the default_kinematics.yaml file which contains all of the kinematical properties (position and orientation of the joints, xyz and rpy) and on the other side there is the joint_limits.yaml which contains joint limits (position, velocity, acceleration and effort). Don't be surprised why all joints are specified with position limits of +/-pi, that are not our real motion limits. We have decided to define position limits on the ESP32 hardware-driver side, which are checked before a new setpoint is set. So the config file only is taken into account if you are using fake_hardware. If you are using real_hardware, the limits specified on the ESP32 side are taken into account.
