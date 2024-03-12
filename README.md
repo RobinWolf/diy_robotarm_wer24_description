@@ -6,7 +6,7 @@ We use this ur-3 copy as a base modified for our purposes. For a full descriptio
 
 The main idea is, that this repo can be cloned inside a docker-container containing and combining all description packages for the whole scene (e.g. Base, Robot, Gripper, additional obstacles) Using differnet docker containers is very likely, because this makes the whole integration very modular.
 
-Refer to the main Readme.md https://github.com/mathias31415/diy_robotics/blob/main/ROS-Packages/ROS-OVERVIEW.md for a general overview.
+Refer to the main Readme.md [https://github.com/mathias31415/diy_robotics/blob/main/ROS-Packages/ROS-OVERVIEW.md ](https://github.com/mathias31415/diy_robotics/blob/main/ROS-Packages/README.md) for a general overview.
 
 ![arm_classification](images/arm_classification.png)
 
